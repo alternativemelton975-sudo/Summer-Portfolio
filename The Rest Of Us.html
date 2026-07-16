@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Rest Of Us</title>
+  <style>
+    body { margin: 0; background: #111827; color: white; font-family: Arial, sans-serif; }
+    .wrap { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .card { padding: 24px; background: #374151; border-radius: 12px; text-align: center; width: min(90%, 560px); }
+    button { margin: 8px; padding: 10px 14px; border: 0; border-radius: 8px; background: #22c55e; color: white; cursor: pointer; }
+    #output { margin-top: 12px; color: #bbf7d0; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>The Rest Of Us</h1>
+      <p>Choose a path to shape the story.</p>
+      <button data-choice="explore">Explore the ruins</button>
+      <button data-choice="protect">Protect the camp</button>
+      <button data-choice="search">Search for allies</button>
+      <div id="output">Your journey begins...</div>
+    </div>
+  </div>
+  <script>
+const output = document.getElementById('output');
+const buttons = document.querySelectorAll('button');
+
+// Game state
+let gameState = {
+  currentScene: 'start',
+  inventory: [],
+  health: 100,
+  trust: 0,
+  day: 1,
+  survivors: 3,
+  resources: { food: 10, water: 10, medicine: 2 }
+};
+
+const storyTree = {
+  start: {
+    text: 'You are the leader of a group of survivors. A new day begins...',
+    choices: {
+      explore: 'Explore',
+      protect: 'Protect',
+      search: 'Search'
+    },
+    next: {
+      explore: 'explore_result',
+      protect: 'protect_result',
+      search: 'search_result'
+    }
+  },
+  explore_result: {
+    text: '🗺️ You uncover a hidden path. You find supplies and discover a safe location!',
+    impact: { resources: { food: 5, water: 3 }, health: -10, trust: 10 },
+    choices: {
+      continue: 'Continue',
+      rest: 'Rest'
+    },
+    next: { continue: 'day_end', rest: 'camp' }
+  },
+  protect_result: {
+    text: '🛡️ You strengthen the camp perimeter. Everyone feels safer.',
+    impact: { health: 15, trust: 15 },
+    choices: {
+      continue: 'Continue',
+      rest: 'Rest'
+    },
+    next: { continue: 'day_end', rest: 'camp' }
+  },
+  search_result: {
+    text: '🤝 You meet a wandering ally! They join the group.',
+    impact: { survivors: 1, trust: 20, resources: { food: 2 } },
+    choices: {
+      continue: 'Continue',
+      question: 'Question Them'
+    },
+    next: { continue: 'day_end', question: 'interrogation' }
+  },
+  interrogation: {
+    text: '🔍 They reveal valuable information about safe routes ahead.',
+    impact: { trust: 10 },
+    choices: { continue: 'Continue' },
+    next: { continue: 'day_end' }
+  },
+  camp: {
+    text: '⛺ Everyone rests. Energy restored.',
+    impact: { health: 20, resources: { food: -2, water: -2 } },
+    choices: { continue: 'Continue' },
+    next: { continue: 'day_end' }
+  },
+  day_end: {
+    text: `📅 Day ${gameState.day} ends. Resources consumed.`,
+    impact: { resources: { food: -3, water: -2 } },
+    choices: { next_day: 'Next Day' },
+    next: { next_day: 'start' }
+  }
+};
+
+function getStats() {
+  return `<br><strong>❤️ Health: ${gameState.health} | 🤝 Trust: ${gameState.trust} | 👥 Survivors: ${gameState.survivors}</strong><br>🍖 Food: ${gameState.resources.food} | 💧 Water: ${gameState.resources.water} | 💊 Medicine: ${gameState.resources.medicine}<br>📅 Day: ${gameState.day}`;
+}
+
+function applyImpact(impact) {
+  if (impact.health) gameState.health += impact.health;
+  if (impact.trust) gameState.trust += impact.trust;
+  if (impact.survivors) gameState.survivors += impact.survivors;
+  if (impact.resources) {
+    Object.keys(impact.resources).forEach(key => {
+      gameState.resources[key] = Math.max(0, gameState.resources[key] + impact.resources[key]);
+    });
+  }
+  
+  // Check game over conditions
+  if (gameState.health <= 0) {
+    output.innerHTML = '💀 Your health failed. Game Over.';
+    disableAllButtons();
+    return false;
+  }
+  if (gameState.survivors <= 0) {
+    output.innerHTML = '💀 All survivors lost. Game Over.';
+    disableAllButtons();
+    return false;
+  }
+  if (gameState.resources.food <= 0 && gameState.resources.water <= 0) {
+    output.innerHTML = '💀 Starvation sets in. Game Over.';
+    disableAllButtons();
+    return false;
+  }
+  return true;
+}
+
+function updateScene(sceneKey) {
+  if (sceneKey === 'start') {
+    gameState.day++;
+  }
+  
+  gameState.currentScene = sceneKey;
+  const scene = storyTree[sceneKey];
+  
+  if (!scene) {
+    output.innerHTML = 'Scene not found.';
+    return;
+  }
+  
+  output.innerHTML = scene.text + getStats();
+  
+  // Apply impacts if any
+  if (scene.impact) {
+    if (!applyImpact(scene.impact)) return;
+  }
+  
+  // Update buttons
+  buttons.forEach(btn => {
+    btn.style.display = 'none';
+    const choice = Object.keys(scene.choices).find(key => btn.dataset.choice === key);
+    if (choice) {
+      btn.style.display = 'block';
+      btn.textContent = scene.choices[choice];
+    }
+  });
+}
+
+function disableAllButtons() {
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+    btn.style.cursor = 'not-allowed';
+  });
+}
+
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const choice = button.dataset.choice;
+    const scene = storyTree[gameState.currentScene];
+    if (scene && scene.next && scene.next[choice]) {
+      const nextScene = scene.next[choice];
+      updateScene(nextScene);
+    }
+  });
+});
+
+// Initialize game
+updateScene('start');
+  </script>
+</body>
+</html>

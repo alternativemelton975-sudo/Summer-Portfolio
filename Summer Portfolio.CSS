@@ -1,0 +1,109 @@
+p{
+    color: #690a0a;
+    text-align: center;
+    background-color: pink;
+    width: 120px;
+   
+}
+
+h1{
+color: blanchedalmond;
+text-align: center;
+background-color: brown;
+border-radius: 25px;
+padding: 20px;
+width: 1200px;
+height: 150px;
+}
+
+h2{
+ color: brown;
+ text-align: center;
+ background-color: blanchedalmond;
+ border-radius: 25px;
+ padding: 20px;
+ width: 1200px;
+ height: 20px;
+}
+
+body{
+    background-color: pink;
+}
+
+a:link {
+  text-align: center;
+  color: brown;
+  background-color: blanchedalmond;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  spacing: 15px;
+
+}
+
+a:visited {
+  text-align: center;
+  color: brown;
+  background-color: blanchedalmond;
+  text-decoration: none;
+  border-radius: 25px;
+  padding: 20px;
+}
+
+a:hover {
+  text-align: center;
+  color: blanchedalmond;
+  background-color: brown;
+  text-decoration: none ;
+  border-radius: 25px;
+  padding: 20px;
+}
+
+a:active {
+  text-align: center;
+  color: brown;
+  background-color: blanchedalmond;
+  text-decoration: none;
+  border-radius: 25px;
+  padding: 20px;
+}
+
+#Travel{
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  background-image: url(WarDog.png)
+}
+
+#WarDog{
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  background:pink;
+  
+}
+
+div{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  border: 20px solid pink; 
+}
+
+img{
+  text-align: center;
+  width: 50%;
+}
+
+canvas{
+  text-align: center;
+  border: 1px solid pink;
+  background-color: pink;
+}
