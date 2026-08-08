@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I/feBvIwchk=",
+  "dgSpecHash": "6COQvIxUoB4=",
   "success": true,
-  "projectFilePath": "D:\\William's Projects\\2025-2026 Projects\\Side Projects\\HTML\\Summer-Portfolio\\CrossShooter.csproj",
+  "projectFilePath": "C:\\Users\\alter\\OneDrive\\Documents\\GitHub\\Summer-Portfolio\\CrossShooter.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alter\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.28\\microsoft.netcore.app.ref.8.0.28.nupkg.sha512",
     "C:\\Users\\alter\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.28\\microsoft.windowsdesktop.app.ref.8.0.28.nupkg.sha512",

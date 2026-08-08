@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\William's Projects\\2025-2026 Projects\\Side Projects\\HTML\\Summer-Portfolio\\CrossShooter.csproj": {}
+    "C:\\Users\\alter\\OneDrive\\Documents\\GitHub\\Summer-Portfolio\\CrossShooter.csproj": {}
   },
   "projects": {
-    "D:\\William's Projects\\2025-2026 Projects\\Side Projects\\HTML\\Summer-Portfolio\\CrossShooter.csproj": {
+    "C:\\Users\\alter\\OneDrive\\Documents\\GitHub\\Summer-Portfolio\\CrossShooter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\William's Projects\\2025-2026 Projects\\Side Projects\\HTML\\Summer-Portfolio\\CrossShooter.csproj",
+        "projectUniqueName": "C:\\Users\\alter\\OneDrive\\Documents\\GitHub\\Summer-Portfolio\\CrossShooter.csproj",
         "projectName": "CrossShooter",
-        "projectPath": "D:\\William's Projects\\2025-2026 Projects\\Side Projects\\HTML\\Summer-Portfolio\\CrossShooter.csproj",
+        "projectPath": "C:\\Users\\alter\\OneDrive\\Documents\\GitHub\\Summer-Portfolio\\CrossShooter.csproj",
         "packagesPath": "C:\\Users\\alter\\.nuget\\packages\\",
-        "outputPath": "D:\\William's Projects\\2025-2026 Projects\\Side Projects\\HTML\\Summer-Portfolio\\obj\\",
+        "outputPath": "C:\\Users\\alter\\OneDrive\\Documents\\GitHub\\Summer-Portfolio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
