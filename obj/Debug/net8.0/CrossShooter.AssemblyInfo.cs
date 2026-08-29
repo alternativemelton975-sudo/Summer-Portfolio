@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CrossShooter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a0677e45c60c3482df317394e9bdeb651642f7c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+652bec4cc34c5c8fdd8bc7d82426402d4b27d842")]
 [assembly: System.Reflection.AssemblyProductAttribute("CrossShooter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CrossShooter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
